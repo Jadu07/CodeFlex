@@ -1,10 +1,22 @@
-def string_palindrome(words):
-    words = words.lower().replace(" ", "")
-    return words == words[::-1]
+import string
+
+def is_palindrome(s):
+    # Clean input by removing punctuation and converting to lowercase
+    cleaned = ''.join(c.lower() for c in s if c.isalnum())  # Keep only alphanumeric characters
+    return cleaned == cleaned[::-1]
 
 def main():
-    user_word = input("Enter a string : ")
-    print(f"\n'{user_word}' is a palindrome.") if string_palindrome(user_word) else print(f"\n'{user_word}' is not a palindrome.")
+    # Ask the user to input multiple strings separated by commas
+    user_input = input("Enter strings separated by commas: ")
+    # Split the input into a list of strings
+    strings = [s.strip() for s in user_input.split(',')]
+    
+    # Iterate over each string and check if it's a palindrome
+    for s in strings:
+        if is_palindrome(s):
+            print(f"'{s}' is a palindrome.")
+        else:
+            print(f"'{s}' is not a palindrome.")
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()
